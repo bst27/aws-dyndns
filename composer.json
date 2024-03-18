@@ -1,0 +1,13 @@
+{
+    "name": "bst27/aws-dyndns",
+    "description": "A simple way to use AWS for DynDNS",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "bst27"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
