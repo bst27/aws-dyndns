@@ -9,3 +9,9 @@ To install Composer packages via Docker use the following command:
 ```
 docker run --rm --interactive --tty --volume $PWD:/app --user $(id -u):$(id -g) composer install --ignore-platform-reqs
 ```
+
+## Laravel Pint
+Run Laravel Pint for code styling when Docker containers are running:
+```
+docker exec aws-dyndns-php-1 ./vendor/bin/pint
+```
