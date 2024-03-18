@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "aws/aws-sdk-php": "^3.301"
+    },
     "autoload": {
         "psr-4": {
             "AwsDynDns\\": "src/"
