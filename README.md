@@ -1,6 +1,22 @@
 # About
 This is a simple way to use Amazon Web Services (AWS) for dynamic DNS (DynDNS) updates.
 
+# Running locally
+If you want to start the application locally for testing or development you can do so easily.
+At first, you have to define the application settings. To do so you can create a copy of the `.env.example`:
+```
+cp .env.example .env
+```
+Have a look at the created `.env` file and customize it as to your needs. Then use Docker to start the application:
+```
+docker compose up
+```
+Depending on your settings you should now be able to access the application with your web browser by calling a URL
+similar to this:
+```
+http://localhost/?authToken=my-secret-token&awsDomainName=my-ip.example.com&ip=127.0.0.1
+```
+
 # Deploy to production
 This production setup requires [Docker](https://www.docker.com/). You can run your own web server with Docker in minutes
 using services like [DigitalOcean](https://www.digitalocean.com/) or [Vultr](https://www.vultr.com/). 
