@@ -16,5 +16,8 @@
         "psr-4": {
             "AwsDynDns\\": "src/"
         }
+    },
+    "require-dev": {
+        "laravel/pint": "^1.14"
     }
 }
