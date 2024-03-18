@@ -7,10 +7,16 @@ services:
     image: aws-dyndns-php-0.1
     restart: unless-stopped
     environment:
-      PHP_DATE_TIMEZONE: ${PHP_DATE_TIMEZONE}
-      SSL_MODE: off
-      PHP_SESSION_COOKIE_SECURE: 0
+      AUTH_TOKEN: ${AUTH_TOKEN}
       AUTORUN_ENABLED: false
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
+      AWS_DOMAIN_NAME: ${AWS_DOMAIN_NAME}
+      AWS_HOSTED_ZONE_ID: ${AWS_HOSTED_ZONE_ID}
+      AWS_SECRET_KEY: ${AWS_SECRET_KEY}
+      PHP_DATE_TIMEZONE: ${PHP_DATE_TIMEZONE}
+      PHP_SESSION_COOKIE_SECURE: 0
+      SSL_MODE: off
     networks:
       - app-net
     volumes:
