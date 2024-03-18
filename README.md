@@ -23,3 +23,23 @@ Run Laravel Pint for code styling when Docker containers are running:
 ```
 docker exec aws-dyndns-php-1 ./vendor/bin/pint
 ```
+
+## AWS Policy
+To be able to manage DNS records for dynamic DNS in Route 53 at the Amazon Web Services credentials
+have to be provided to this application. To do so you can create a new user in an existing AWS account
+and generate authentication codes (= key and secret) for the user. You also have to create a policy
+which allows to manage DNS records for the relevant hosted zone ("domain") in AWS Route 53. This policy
+then has to be assigned to the newly created user account. You can use the given policy below, just make
+sure to replace `<your-hosted-zone-id>` with the correct id of your hosted zone:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "route53:ChangeResourceRecordSets",
+            "Resource": "arn:aws:route53:::hostedzone/<your-hosted-zone-id>"
+        }
+    ]
+}
+```
