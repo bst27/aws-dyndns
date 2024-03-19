@@ -3,9 +3,16 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use AwsDynDns\AuthGuard;
+use AwsDynDns\HealthCheck;
 use AwsDynDns\RateLimiter;
 use AwsDynDns\Updater;
 use AwsDynDns\UpdateRequest;
+
+if ((new HealthCheck())->done()) {
+    http_response_code(200);
+    echo 'Healthy';
+    exit();
+}
 
 try {
     (new RateLimiter())->check();
