@@ -3,8 +3,17 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use AwsDynDns\AuthGuard;
+use AwsDynDns\RateLimiter;
 use AwsDynDns\Updater;
 use AwsDynDns\UpdateRequest;
+
+try {
+    (new RateLimiter())->check();
+} catch (RuntimeException $err) {
+    http_response_code(429);
+    echo 'Too Many Requests';
+    exit();
+}
 
 try {
     (new AuthGuard())->check();

@@ -58,12 +58,13 @@ https://aws-dyndns.example.com/?authToken=my-secret-token&awsDomainName=my-ip.ex
 ```
 You should get one of the following HTTP response status codes:
 
-| Status Code  | Info                                                                                                                          |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------|
-| 200          | OK: Everything worked as expected. DNS records have been updated successfully.                                                |
-| 400          | Bad Request: Probably a required parameter is missing (see response details).                                                 |
-| 403          | Forbidden: You defined an auth token in the application settings but the auth token given in the request is missing or wrong. |
-| 502          | Bad Gateway: There has been an error in the interaction with the AWS Route 53 API.                                            |
+| Status Code | Info                                                                                                                          |
+|-------------|-------------------------------------------------------------------------------------------------------------------------------|
+| 200         | OK: Everything worked as expected. DNS records have been updated successfully.                                                |
+| 400         | Bad Request: Probably a required parameter is missing (see response details).                                                 |
+| 403         | Forbidden: You defined an auth token in the application settings but the auth token given in the request is missing or wrong. |
+| 429         | Too Many Requests: You defined a rate limit in the application settings and reached it for the current hour.                  |
+| 502         | Bad Gateway: There has been an error in the interaction with the AWS Route 53 API.                                            |
 
 If everything works you can use this URL to automatically update DNS records with your current IP, e.g. by setting it
 up in your router at home. For details about how to do this you should have a look at the docs for your specific router.

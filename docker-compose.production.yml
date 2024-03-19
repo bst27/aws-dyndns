@@ -16,6 +16,7 @@ services:
       AWS_SECRET_KEY: ${AWS_SECRET_KEY}
       PHP_DATE_TIMEZONE: ${PHP_DATE_TIMEZONE}
       PHP_SESSION_COOKIE_SECURE: 0
+      RATE_LIMIT: ${RATE_LIMIT}
       SSL_MODE: off
     networks:
       - traefik-network
