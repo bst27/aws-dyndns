@@ -16,7 +16,21 @@ class UpdateRequest
         $region = self::getValueOrFail('awsRegion');
         $hostedZoneId = self::getValueOrFail('awsHostedZoneId');
         $domainName = self::getValueOrFail('awsDomainName');
-        $newIpAddress = self::getValueOrFail('ip', false);
+
+        $ipAddresses = [];
+        try {
+            $ipAddresses[] = IpAddress::ipv4(self::getValueOrFail('ip', false));
+        } catch (InvalidArgumentException $ex) {
+        }
+
+        try {
+            $ipAddresses[] = IpAddress::ipv6(self::getValueOrFail('ipv6', false));
+        } catch (InvalidArgumentException $ex) {
+        }
+
+        if (empty($ipAddresses)) {
+            throw new InvalidArgumentException('Missing required parameter: ip or ipv6');
+        }
 
         $domainName = self::ensureEndsWithPeriod($domainName);
 
@@ -26,7 +40,7 @@ class UpdateRequest
             $region,
             $hostedZoneId,
             $domainName,
-            $newIpAddress,
+            $ipAddresses,
         );
     }
 
@@ -68,9 +82,8 @@ class UpdateRequest
         private readonly string $region,
         private readonly string $hostedZoneId,
         private readonly string $domainName,
-        private readonly string $newIpAddress
-    ) {
-    }
+        private readonly array $newIpAddresses,
+    ) {}
 
     public function getAccessKey(): string
     {
@@ -97,8 +110,11 @@ class UpdateRequest
         return $this->domainName;
     }
 
-    public function getNewIpAddress(): string
+    /**
+     * @return IpAddress[]
+     */
+    public function getNewIpAddresses(): array
     {
-        return $this->newIpAddress;
+        return $this->newIpAddresses;
     }
 }
