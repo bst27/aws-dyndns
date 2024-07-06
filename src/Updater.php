@@ -23,18 +23,24 @@ class Updater
         ]);
 
         // Prepare the change batch for the DNS update
-        $changeBatch = [
-            'Changes' => [
-                [
-                    'Action' => 'UPSERT',
-                    'ResourceRecordSet' => [
-                        'Name' => $request->getDomainName(),
-                        'Type' => 'A',
-                        'TTL' => 300,
-                        'ResourceRecords' => [['Value' => $request->getNewIpAddress()]],
-                    ],
+        $changes = [];
+        foreach ($request->getNewIpAddresses() as $ipAddress) {
+            $changes[] = [
+                'Action' => 'UPSERT',
+                'ResourceRecordSet' => [
+                    'Name' => $request->getDomainName(),
+                    'Type' => match (true) {
+                        $ipAddress->isIpv4() => 'A',
+                        $ipAddress->isIpv6() => 'AAAA',
+                    },
+                    'TTL' => 300,
+                    'ResourceRecords' => [['Value' => $ipAddress->getIpAddress()]],
                 ],
-            ],
+            ];
+        }
+
+        $changeBatch = [
+            'Changes' => $changes,
         ];
 
         // Attempt to update the DNS record

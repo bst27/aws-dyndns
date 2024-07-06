@@ -14,7 +14,7 @@ docker compose up
 Depending on your settings you should now be able to access the application with your web browser by calling a URL
 similar to this:
 ```
-http://localhost/?authToken=my-secret-token&awsDomainName=my-ip.example.com&ip=127.0.0.1
+http://localhost/?authToken=my-secret-token&awsDomainName=my-ip.example.com&ip=127.0.0.1&ipv6=::1
 ```
 
 # Deploy to production
