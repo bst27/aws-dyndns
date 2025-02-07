@@ -3,6 +3,7 @@
     "description": "A simple way to use AWS for DynDNS",
     "type": "project",
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "bst27"
