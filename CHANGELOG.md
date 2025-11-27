@@ -31,5 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README contains helpful infos about the project and deployment
 
 [unreleased]: https://github.com/bst27/aws-dyndns/compare/v1.0.1...HEAD
+[1.0.2]: https://github.com/bst27/aws-dyndns/releases/tag/v1.0.2
 [1.0.1]: https://github.com/bst27/aws-dyndns/releases/tag/v1.0.1
 [1.0.0]: https://github.com/bst27/aws-dyndns/releases/tag/v1.0.0
