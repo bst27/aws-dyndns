@@ -8,14 +8,14 @@ use AwsDynDns\RateLimiter;
 use AwsDynDns\Updater;
 use AwsDynDns\UpdateRequest;
 
-if ((new HealthCheck())->done()) {
+if ((new HealthCheck)->done()) {
     http_response_code(200);
     echo 'Healthy';
     exit();
 }
 
 try {
-    (new RateLimiter())->check();
+    (new RateLimiter)->check();
 } catch (RuntimeException $err) {
     http_response_code(429);
     echo 'Too Many Requests';
@@ -23,7 +23,7 @@ try {
 }
 
 try {
-    (new AuthGuard())->check();
+    (new AuthGuard)->check();
 } catch (RuntimeException $err) {
     http_response_code(403);
     echo 'Forbidden';
@@ -38,7 +38,7 @@ try {
     exit();
 }
 
-$updater = new Updater();
+$updater = new Updater;
 try {
     $updater->update($request);
 } catch (RuntimeException $err) {
