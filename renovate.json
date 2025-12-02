@@ -19,7 +19,9 @@
       "matchUpdateTypes": [
         "lockFileMaintenance",
         "minor",
-        "patch"
+        "patch",
+        "pin",
+        "pinDigest"
       ]
     }
   ]
