@@ -30,7 +30,7 @@ services:
       - 'traefik.http.routers.aws-dyndns-php.tls=true'
 
   traefik:
-    image: traefik:v3.7@sha256:eb328e2c806c53aafbbace6c451fa54d268961261a85452fcf0fb752a30c17be
+    image: traefik:v3.7@sha256:0f6150202bc1fed72a7bd2107460eaa510e5b8a905f3fdb5b84f2c8619c33368
     restart: unless-stopped
     command:
       - '--api.insecure=true'
